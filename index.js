@@ -12,6 +12,11 @@ const client = new Client({
 
 await client.connect();
 
-const res = await client.query("SELECT $1::text as message", ["Hello world!"]);
-console.log(res.rows[0].message);
-await client.end();
+async function insertUser() {
+  const result = await client.query(
+    "Insert into users (name, email, password) values ('rohit','roti@yopmail.com','12345');"
+  );
+  console.log("Inserted record is ", result);
+}
+
+insertUser();
